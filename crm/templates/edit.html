@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{%  block title %}Добавить участника{% endblock %}
+
+{% block content %}
+<a href="/student?id={{ student.id }}">Назад</a>
+<h1>Изменить: {{ student.name }} {{ student.surname }}</h1>
+
+<form action="/edit?id={{ student.id }}" method="post">
+    {% csrf_token %}
+    <strong>Имя: </strong> <input type="text" name="name" value="{{ student.name }}"/><br>
+    <strong>Фамилия: </strong> <input type="text" name="surname" value="{{ student.surname }}"/><br>
+    <!-- TODO: Добавить другие поля -->
+    <input type="submit" value="Сохранить">
+</form>
+{% endblock %}
+
