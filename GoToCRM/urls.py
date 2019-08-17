@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from GoToCRM import settings
 from crm.views import *
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +26,4 @@ urlpatterns = [
     path('add', add),
     path('edit', edit),
     path('delete', delete),
-]
+] + static('avatars/', document_root='avatars/')

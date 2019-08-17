@@ -6,10 +6,11 @@
 <a href="/student?id={{ student.id }}">Назад</a>
 <h1>Изменить: {{ student.name }} {{ student.surname }}</h1>
 
-<form action="/edit?id={{ student.id }}" method="post">
+<form action="/edit?id={{ student.id }}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <strong>Имя: </strong> <input type="text" name="name" value="{{ student.name }}"/><br>
     <strong>Фамилия: </strong> <input type="text" name="surname" value="{{ student.surname }}"/><br>
+    <strong>Лицо:</strong> <input type="file" name="avatar"><br>
     <!-- TODO: Добавить другие поля -->
     <input type="submit" value="Сохранить">
 </form>

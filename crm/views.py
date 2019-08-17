@@ -56,6 +56,10 @@ def edit(request):
             return HttpResponse("Заполните все поля")
 
         student = Student.objects.get(pk=id)
+
+        if 'avatar' in request.FILES:
+            student.photo = request.FILES['avatar']
+
         student.name = name
         student.surname = surname
         student.save()
