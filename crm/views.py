@@ -5,13 +5,11 @@ from django.contrib import messages
 # Create your views here.
 from crm.models import Student, Course
 
-
 def index(request):
     students = Student.objects.all()
     return render(request, 'index.html', {'students': students})
 
-def details(request):
-    id = request.GET.get('id')
+def details(request, id):
     student = Student.objects.get(pk=id)
     return render(request, 'details.html', {'student': student})
 
@@ -39,18 +37,15 @@ def add(request):
             student.course = None
         student.save()
 
-        return redirect('/student?id={}'.format(student.id))
+        return redirect('/student/{}'.format(student.id))
 
-def edit(request):
+def edit(request, id):
     if request.method == 'GET':
-        id = request.GET.get('id')
         student = Student.objects.get(pk=id)
         return render(request, 'edit.html', {'student': student})
     if request.method == 'POST':
         name = request.POST.get('name', '')
         surname = request.POST.get('surname', '')
-
-        id = request.GET.get('id')
 
         if name == '' or surname == '':
             return HttpResponse("Заполните все поля")
@@ -64,10 +59,9 @@ def edit(request):
         student.surname = surname
         student.save()
 
-        return redirect('/student?id={}'.format(student.id))
+        return redirect(f'/student/{student.id}')
 
-def delete(request):
-    id = request.GET.get('id')
+def delete(request, id):
     student = Student.objects.get(pk=id)
     student.delete()
 

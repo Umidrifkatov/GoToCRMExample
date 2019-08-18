@@ -4,8 +4,8 @@
 
 {% block content %}
 <a href="/">Назад</a>
-<a href="/edit?id={{ student.id }}">Изменить</a>
-<a href="/delete?id={{ student.id }}" onclick="return confirm('Точно удалить?')">Удалить</a>
+<a href="/edit/{{ student.id }}">Изменить</a>
+<a href="/delete/{{ student.id }}" onclick="return confirm('Точно удалить?')">Удалить</a>
 <h1>{{ student.name }} {{ student.surname }}</h1>
     <img src="{{ student.photo.url }}" />
 <ul>

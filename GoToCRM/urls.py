@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    path('student', details),
+    path('student/<int:id>', details),
     path('add', add),
-    path('edit', edit),
-    path('delete', delete),
+    path('edit/<int:id>', edit),
+    path('delete/<int:id>', delete),
 ] + static('avatars/', document_root='avatars/')
